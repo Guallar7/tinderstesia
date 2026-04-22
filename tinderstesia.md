@@ -398,9 +398,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Title icon */
 .title-icon {
-  width: 120px;
-  height: 120px;
-  margin: 0 0 1.5rem 0;
+  width: 90px;
+  height: 90px;
+  margin: 0 0 0.8rem 0;
   opacity: 0.9;
 }
 
@@ -408,20 +408,20 @@ h1, h2, h3, h4, h5, h6 {
 .problem-card {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 2rem;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .problem-item {
   background: white;
-  padding: 1.5rem;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(26, 87, 153, 0.1);
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(26, 87, 153, 0.08);
   display: flex;
   flex-direction: row;
-  gap: 1.5rem;
+  gap: 1.2rem;
   align-items: flex-start;
-  border-left: 6px solid #1a5799;
+  border-left: 5px solid #1a5799;
   transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -452,31 +452,36 @@ h1, h2, h3, h4, h5, h6 {
 /* Solution slide */
 .solution-card {
   background: white;
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(10, 126, 108, 0.1);
-  border-left: 8px solid #0a7e6c;
+  padding: 1.8rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(10, 126, 108, 0.08);
+  border-left: 6px solid #0a7e6c;
   transition: all 400ms ease;
 }
 
 .solution-card h3 {
   color: #0a7e6c;
-  margin: 0 0 1.2rem 0;
-  font-size: 1.4rem;
+  margin: 0 0 0.8rem 0;
+  font-size: 1.2rem;
+}
+
+.solution-card > p:not(.solution-footer) {
+  margin: 0 0 1rem 0;
+  font-size: 0.95rem;
 }
 
 .solution-list {
   list-style: none;
   padding: 0;
-  margin: 1.8rem 0;
+  margin: 1rem 0;
 }
 
 .solution-list li {
-  margin: 1rem 0;
-  padding-left: 2.5rem;
+  margin: 0.6rem 0;
+  padding-left: 2rem;
   position: relative;
-  font-size: 1.05rem;
-  line-height: 1.8;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .solution-list li:before {
@@ -485,40 +490,41 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   color: #0a7e6c;
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 .solution-footer {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 2px solid #e9ecef;
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
   font-style: italic;
-  opacity: 0.85;
+  opacity: 0.8;
   color: #666;
+  font-size: 0.9rem;
 }
 
 /* Houses grid */
 .houses-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
+  gap: 1rem;
+  margin-top: 1.2rem;
 }
 
 .house-card {
   background: white;
-  padding: 2rem;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  font-size: 1rem;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  font-size: 0.9rem;
   text-align: center;
-  border-top: 5px solid #1a5799;
+  border-top: 4px solid #1a5799;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.8rem;
-  min-height: 140px;
+  gap: 0.6rem;
+  min-height: 100px;
   transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
 }
@@ -544,17 +550,17 @@ h1, h2, h3, h4, h5, h6 {
 /* Actors grid */
 .actors-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 2.5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 .actor-card {
   background: white;
-  padding: 2rem;
-  border-radius: 14px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  border-left: 7px solid;
+  padding: 1.4rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid;
   transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -563,30 +569,30 @@ h1, h2, h3, h4, h5, h6 {
 .actor-card.admin { border-left-color: #334155; }
 
 .actor-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 .actor-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 2.2rem;
+  margin-bottom: 0.6rem;
   display: block;
   line-height: 1;
 }
 
 .actor-card h4 {
-  margin: 0 0 0.7rem 0;
+  margin: 0 0 0.4rem 0;
   color: #1a1a1a;
-  font-size: 1.15rem;
+  font-size: 1rem;
 }
 
 .role-id {
   background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.8rem;
-  margin: 0 0 1.2rem 0;
+  font-size: 0.75rem;
+  margin: 0 0 0.8rem 0;
   border: 1px solid #e0e0e0;
 }
 
@@ -594,8 +600,8 @@ h1, h2, h3, h4, h5, h6 {
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 2;
+  font-size: 0.85rem;
+  line-height: 1.7;
 }
 
 .actor-card li {
@@ -605,8 +611,8 @@ h1, h2, h3, h4, h5, h6 {
 .actor-card li:before {
   content: "→ ";
   color: inherit;
-  margin-right: 0.5rem;
-  opacity: 0.7;
+  margin-right: 0.3rem;
+  opacity: 0.6;
   transition: all 200ms ease;
 }
 
@@ -963,22 +969,22 @@ h1, h2, h3, h4, h5, h6 {
 .roadmap-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-  margin-top: 2.5rem;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 .roadmap-column {
   background: white;
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  border-left: 8px solid;
+  padding: 1.6rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid;
   transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .roadmap-column:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 .roadmap-column.v1 { border-left-color: #0a7e6c; }
@@ -988,8 +994,8 @@ h1, h2, h3, h4, h5, h6 {
 .roadmap-column.future h3 { color: #ff6600; }
 
 .roadmap-column h3 {
-  margin: 0 0 1.5rem 0;
-  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+  font-size: 1.05rem;
   font-weight: 700;
 }
 
@@ -997,27 +1003,27 @@ h1, h2, h3, h4, h5, h6 {
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 2.2;
+  font-size: 0.85rem;
+  line-height: 1.8;
 }
 
 .roadmap-column li {
   transition: all 200ms ease;
-  padding-left: 0.5rem;
+  padding-left: 0.3rem;
 }
 
 .roadmap-column li:before {
   content: "✓ ";
   color: inherit;
-  margin-right: 0.5rem;
-  opacity: 0.8;
+  margin-right: 0.3rem;
+  opacity: 0.7;
   font-weight: bold;
 }
 
 .roadmap-column.future li:before { content: "→ "; }
 
 .roadmap-column:hover li {
-  padding-left: 1rem;
+  padding-left: 0.6rem;
 }
 
 /* Closing slide */
