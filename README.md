@@ -1,25 +1,27 @@
-# La Kafkiana Historia del Desistimiento
+# Tinderstesia
 
-> *David Guallar vs. Iberdrola — 11,30 €*
+> Una plataforma de afinidades para la reubicación de anestesia
 
-A satiric Slidev presentation of a real email chain between David Guallar and Iberdrola (Spanish electricity company). Each slide is one email. Each email body types out character by character when you press Space or click — for maximum comedic timing as Iberdrola contradicts itself repeatedly over a bogus €11.30 penalty.
+Presentación de **Tinderstesia**, una aplicación interna diseñada para ayudar a orientar la reubicación de personal de anestesia del **Hospital Universitario Miguel Servet** dentro de sus diferentes casas o unidades funcionales.
 
-## Run locally
+La presentación explica el problema que aborda, la solución con swipe bidireccional, los actores involucrados (candidatos, jefes de casa, administración), el sistema de matches y fuerza de vínculo, y el stack técnico utilizado.
+
+## Ejecutar localmente
 
 ```bash
 npm install
 npm run dev
-# Opens at http://localhost:3030
+# Abre en http://localhost:3030
 ```
 
-## How to present
+## Cómo presentar
 
-- **Arrow keys / Space** → navigate between slides
-- **First keypress on each email slide** → triggers the typewriter animation
-- **Second keypress** → moves to the next slide
+- **Flechas / Espacio** → navegar entre slides
+- **Primera pulsación en slides con animación** → activa el efecto typewriter
+- **Segunda pulsación** → avanza al siguiente slide
 
-## Deploy to GitHub Pages
+## Desplegar a GitHub Pages
 
-Push to `main` and GitHub Actions will build and deploy automatically.
+Haz push a `main` y GitHub Actions construirá y desplegará automáticamente.
 
-Enable GitHub Pages in your repo settings → Source: **GitHub Actions**.
+Activa GitHub Pages en los ajustes del repositorio → Source: **GitHub Actions**.

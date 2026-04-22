@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "dev": "slidev iberdrola.md",
-    "build": "slidev build iberdrola.md"
+    "dev": "slidev tinderstesia.md",
+    "build": "slidev build tinderstesia.md"
   },
   "dependencies": {
     "@slidev/theme-default": "^0.25.0"
