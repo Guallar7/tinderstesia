@@ -16,6 +16,8 @@ clicksPerSlide: 999
 
 # Tinderstesia
 
+<img src="/icon.png" class="title-icon" alt="Tinderstesia Logo">
+
 *Una plataforma de afinidades para la reubicación de anestesia*
 
 <div class="pt-8 text-lg opacity-80">
@@ -31,19 +33,27 @@ Afinidades reales, decisiones informadas
 <div class="problem-card">
   <div class="problem-item" v-click>
     <span class="problem-icon">👤</span>
-    <p><b>Preferencias dispersas</b><br>Difíciles de capturar y comparar</p>
+    <div class="problem-text">
+      <p><b>Preferencias dispersas</b><br>Difíciles de capturar y comparar</p>
+    </div>
   </div>
   <div class="problem-item" v-click>
     <span class="problem-icon">🏥</span>
-    <p><b>Intereses no sistematizados</b><br>Las casas no expresan sus necesidades</p>
+    <div class="problem-text">
+      <p><b>Intereses no sistematizados</b><br>Las casas no expresan sus necesidades</p>
+    </div>
   </div>
   <div class="problem-item" v-click>
     <span class="problem-icon">💬</span>
-    <p><b>Conversaciones informales</b><br>Decisiones dispersas, sin trazabilidad</p>
+    <div class="problem-text">
+      <p><b>Conversaciones informales</b><br>Decisiones dispersas, sin trazabilidad</p>
+    </div>
   </div>
   <div class="problem-item" v-click>
     <span class="problem-icon">📊</span>
-    <p><b>Falta de transparencia</b><br>Proceso opaco y poco reproducible</p>
+    <div class="problem-text">
+      <p><b>Falta de transparencia</b><br>Proceso opaco y poco reproducible</p>
+    </div>
   </div>
 </div>
 
@@ -385,40 +395,57 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(20px);
 }
 
+/* Title icon */
+.title-icon {
+  width: 120px;
+  height: 120px;
+  margin: 0 0 1.5rem 0;
+  opacity: 0.9;
+}
+
 /* Problem slide */
 .problem-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .problem-item {
   background: white;
   padding: 1.5rem;
-  border-radius: 16px;
+  border-radius: 14px;
   box-shadow: 0 4px 12px rgba(26, 87, 153, 0.1);
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: flex-start;
   border-left: 6px solid #1a5799;
   transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .problem-item:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   box-shadow: 0 8px 24px rgba(26, 87, 153, 0.15);
 }
 
 .problem-icon {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   display: block;
   line-height: 1;
+  flex-shrink: 0;
+  min-width: 2.5rem;
+  text-align: center;
+}
+
+.problem-text {
+  flex: 1;
 }
 
 .problem-item p {
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.7;
+  font-size: 0.95rem;
 }
 
 /* Solution slide */
