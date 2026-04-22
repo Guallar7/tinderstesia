@@ -16,7 +16,7 @@ clicksPerSlide: 999
 
 # Tinderstesia
 
-<img src="/icon.png" class="title-icon" alt="Tinderstesia Logo">
+<img src="./icon.png" class="title-icon" alt="Tinderstesia Logo">
 
 *Una plataforma de afinidades para la reubicación de anestesia*
 
