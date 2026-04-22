@@ -225,39 +225,40 @@ clicks: 1
 
 # Panel de Fuerza de Vínculo
 
-<div class="admin-panel">
-  <h3>Herramientas de Análisis</h3>
+<div class="admin-panel-container">
 
-  <div class="panel-sections">
-    <div class="panel-section" v-click>
-      <h4><span class="section-icon">📊</span> Estadísticas Globales</h4>
-      <ul>
-        <li>Total de pares evaluados</li>
-        <li>Score promedio</li>
-        <li>% de matches</li>
-        <li>% de relaciones convergentes</li>
-      </ul>
-    </div>
+<div class="panel-section" v-click>
 
-    <div class="panel-section" v-click>
-      <h4><span class="section-icon">🔍</span> Filtros y Búsqueda</h4>
-      <ul>
-        <li>Por usuario o casa</li>
-        <li>Por rango de score</li>
-        <li>Solo matches activos</li>
-        <li>Solo valoradas por ambas partes</li>
-      </ul>
-    </div>
+#### 📊 Estadísticas Globales
 
-    <div class="panel-section" v-click>
-      <h4><span class="section-icon">📈</span> Ordenación</h4>
-      <ul>
-        <li>Por score (mayor/menor)</li>
-        <li>Por nombre usuario</li>
-        <li>Por nombre casa</li>
-      </ul>
-    </div>
-  </div>
+- Total de pares evaluados
+- Score promedio
+- % de matches
+- % de relaciones convergentes
+
+</div>
+
+<div class="panel-section" v-click>
+
+#### 🔍 Filtros y Búsqueda
+
+- Por usuario o casa
+- Por rango de score
+- Solo matches activos
+- Solo valoradas por ambas partes
+
+</div>
+
+<div class="panel-section" v-click>
+
+#### 📈 Ordenación
+
+- Por score (mayor/menor)
+- Por nombre usuario
+- Por nombre casa
+
+</div>
+
 </div>
 
 ---
@@ -837,43 +838,48 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Admin panel */
-.admin-panel {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-}
-
-.admin-panel h3 {
-  color: #334155;
-  margin: 0 0 2rem 0;
-  font-size: 1.3rem;
-  font-weight: 700;
-}
-
-.panel-sections {
+.admin-panel-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+  margin-top: 2rem;
 }
 
 .panel-section {
-  transition: all 400ms ease;
+  background: white;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-top: 4px solid #1a5799;
+}
+
+.panel-section:nth-child(2) {
+  border-top-color: #0a7e6c;
+}
+
+.panel-section:nth-child(3) {
+  border-top-color: #334155;
+}
+
+.panel-section:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .panel-section h4 {
   color: #1a5799;
   margin: 0 0 1.3rem 0;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
 }
 
-.section-icon {
-  font-size: 1.2rem;
-  display: block;
+.panel-section:nth-child(2) h4 {
+  color: #0a7e6c;
+}
+
+.panel-section:nth-child(3) h4 {
+  color: #334155;
 }
 
 .panel-section ul {
