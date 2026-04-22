@@ -14,23 +14,489 @@ transition: fade
 clicksPerSlide: 999
 ---
 
-# Tinderstesia
+<style>
+/* Global styles with smooth transitions */
+.slidev-layout {
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  font-family: 'IBM Plex Sans', sans-serif;
+  color: #1e293b;
+  transition: all 500ms ease-out;
+}
 
-<img src="./icon.png" class="title-icon" alt="Tinderstesia Logo">
+/* Slide 1 Redesign: Premium Glassmorphism */
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  padding: 0;
+  background: radial-gradient(circle at top right, rgba(26, 87, 153, 0.05), transparent),
+              radial-gradient(circle at bottom left, rgba(10, 126, 108, 0.05), transparent);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
-*Una plataforma de afinidades para la reubicación de anestesia*
+.title-glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 3rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto;
+  animation: fadeInDown 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 
-<div class="pt-8 text-lg opacity-80">
-Hospital Universitario Miguel Servet<br>
-Desarrollado por David Guallar<br>
-Afinidades reales, decisiones informadas
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.title-icon {
+  width: 140px !important;
+  height: 140px !important;
+  margin: 0 auto 2rem auto !important;
+  display: block;
+  filter: drop-shadow(0 10px 20px rgba(26, 87, 153, 0.2));
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.title-text {
+  font-size: 4.5rem !important;
+  font-weight: 800 !important;
+  background: linear-gradient(135deg, #1a5799 0%, #0a7e6c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.8rem !important;
+  letter-spacing: -1px;
+}
+
+.title-subtitle {
+  font-size: 1.5rem;
+  color: #475569;
+  margin-bottom: 2.5rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.title-info {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 2rem;
+  color: #64748b;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.tagline {
+  color: #1a5799;
+  font-weight: 700;
+  margin-top: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+/* v-click animations */
+.slidev-vclick-target {
+  transition: all 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.slidev-vclick-hidden {
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+/* Problem slide: 2x2 Grid Fix */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.problem-item {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(26, 87, 153, 0.05);
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  border-left: 5px solid #1a5799;
+  transition: all 300ms ease;
+}
+
+.problem-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(26, 87, 153, 0.12);
+}
+
+.problem-icon {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+
+.problem-text p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Solution slide: Tightening Spacing */
+.solution-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(10, 126, 108, 0.06);
+  border-left: 6px solid #0a7e6c;
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+.solution-card h3 {
+  color: #0a7e6c;
+  margin: 0 0 1rem 0;
+  font-size: 1.4rem;
+}
+
+.solution-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.2rem 0;
+}
+
+.solution-list li {
+  margin: 0.8rem 0;
+  padding-left: 2rem;
+  position: relative;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.solution-list li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #0a7e6c;
+  font-weight: 900;
+}
+
+.solution-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid #f1f5f9;
+  font-style: italic;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+/* Houses grid */
+.houses-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.house-card {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  text-align: center;
+  border-top: 4px solid #1a5799;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.house-card:nth-child(even) { border-top-color: #0a7e6c; }
+
+.house-card:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.house-emoji {
+  font-size: 2.5rem;
+}
+
+/* Actors grid: Overflow Fix */
+.actors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.actor-card {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border-top: 5px solid;
+  transition: all 300ms ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.actor-card.candidate { border-top-color: #1a5799; }
+.actor-card.leader { border-top-color: #0a7e6c; }
+.actor-card.admin { border-top-color: #334155; }
+
+.actor-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.actor-card h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.role-id {
+  background: #f8fafc;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e2e8f0;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.actor-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.actor-card li:before {
+  content: "→ ";
+  color: #1a5799;
+  margin-right: 0.4rem;
+  font-weight: bold;
+}
+
+/* Swipe demo */
+.swipe-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  align-items: center;
+}
+
+.swipe-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  max-width: 480px;
+  overflow: hidden;
+}
+
+.card-header {
+  background: linear-gradient(135deg, #1a5799 0%, #0a7e6c 100%);
+  color: white;
+  padding: 1.5rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.card-stripe {
+  width: 4px;
+  height: 50px;
+  background: white;
+  border-radius: 2px;
+}
+
+.card-body {
+  padding: 1.5rem 2rem;
+  font-size: 1.05rem;
+}
+
+.swipe-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.control-button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 700;
+  color: white;
+}
+
+.control-button.left { background: #1a5799; }
+.control-button.right { background: #0a7e6c; }
+
+.intensity-slider {
+  background: #f8fafc;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.slider-bar {
+  height: 8px;
+  background: linear-gradient(90deg, #1a5799 0%, #0a7e6c 100%);
+  border-radius: 4px;
+  position: relative;
+}
+
+.slider-bar:after {
+  content: '';
+  position: absolute;
+  right: 15%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  background: white;
+  border: 4px solid #0a7e6c;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Roadmap section: Size Optimization */
+.roadmap-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.roadmap-column {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border-left: 6px solid;
+}
+
+.roadmap-column.v1 { border-left-color: #0a7e6c; }
+.roadmap-column.future { border-left-color: #f59e0b; }
+
+.roadmap-column h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+}
+
+.roadmap-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.roadmap-column li:before {
+  content: "• ";
+  color: inherit;
+  font-weight: bold;
+}
+
+/* Closing slide */
+.closing-slide {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  gap: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.closing-title {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #64748b;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.closing-slide h2 {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #1a5799 0%, #0a7e6c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  max-width: 90%;
+  line-height: 1.3;
+}
+
+.closing-subtitle {
+  font-size: 1.3rem;
+  color: #475569;
+  max-width: 80%;
+}
+
+.closing-footer {
+  margin-top: 2rem;
+  color: #94a3b8;
+  font-size: 1rem;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 2rem;
+}
+</style>
+
+<div class="title-container">
+  <div class="title-glass-card">
+    <img src="/icon.png" class="title-icon" alt="Tinderstesia Logo">
+    <h1 class="title-text">Tinderstesia</h1>
+    <p class="title-subtitle">Una plataforma de afinidades para la reubicación de anestesia</p>
+    <div class="title-info">
+      <p>Hospital Universitario Miguel Servet</p>
+      <p>Desarrollado por David Guallar</p>
+      <p class="tagline">Afinidades reales, decisiones informadas</p>
+    </div>
+  </div>
 </div>
 
 ---
 
 # El Problema
 
-<div class="problem-card">
+<div class="problem-grid">
   <div class="problem-item" v-click>
     <span class="problem-icon">👤</span>
     <div class="problem-text">
@@ -144,10 +610,10 @@ Afinidades reales, decisiones informadas
     <h4>Administración</h4>
     <p class="role-id"><code>admin</code></p>
     <ul>
-      <li>Gestiona usuarios y roles</li>
+      <li>Gestiona usuarios</li>
       <li>Gestiona casas</li>
       <li>Asigna jefaturas</li>
-      <li>Ve panel global</li>
+      <li>Panel global</li>
     </ul>
   </div>
 </div>
@@ -326,8 +792,7 @@ clicks: 1
   <div class="roadmap-column v1" v-click>
     <h3>✅ V1 Cubierta</h3>
     <ul>
-      <li>Registro y sincronización</li>
-      <li>Gestión de roles</li>
+      <li>Registro y roles</li>
       <li>Swipe bidireccional</li>
       <li>Matches automáticos</li>
       <li>Fuerza de vínculo</li>
@@ -338,25 +803,23 @@ clicks: 1
   </div>
 
   <div class="roadmap-column future" v-click>
-    <h3>🚀 Fuera de Alcance V1</h3>
+    <h3>🚀 Roadmap</h3>
     <ul>
-      <li>Reasignación automática</li>
+      <li>Reasignación auto</li>
       <li>Optimización global</li>
       <li>Historial completo</li>
-      <li>Matching de guardias</li>
+      <li>Matching guardias</li>
       <li>Múltiples rondas</li>
-      <li>Rate limiting avanzado</li>
+      <li>Rate limiting</li>
       <li>Exportación CSV</li>
-      <li>Comentarios privados</li>
     </ul>
   </div>
 </div>
 
 ---
 
-# Mensaje de Cierre
-
 <div class="closing-slide">
+  <div class="closing-title">Mensaje de Cierre</div>
   <h2 v-click>Tinderstesia convierte un proceso potencialmente subjetivo y disperso en un sistema ordenado de afinidades.</h2>
   
   <p class="closing-subtitle" v-click>
@@ -373,695 +836,3 @@ clicks: 1
   </div>
 </div>
 
-<style>
-/* Global styles with smooth transitions */
-.slidev-layout {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  font-family: 'IBM Plex Sans', sans-serif;
-  color: #1a1a1a;
-  --uno: transition-all duration-500 ease-out;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  --uno: font-weight-700 transition-all duration-500;
-}
-
-/* v-click animations */
-.slidev-vclick-target {
-  transition: all 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.slidev-vclick-hidden {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-/* Title icon */
-.title-icon {
-  width: 90px;
-  height: 90px;
-  margin: 0 0 0.8rem 0;
-  opacity: 0.9;
-}
-
-/* Problem slide */
-.problem-card {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.problem-item {
-  background: white;
-  padding: 1rem 1.2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(26, 87, 153, 0.08);
-  display: flex;
-  flex-direction: row;
-  gap: 1.2rem;
-  align-items: flex-start;
-  border-left: 5px solid #1a5799;
-  transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.problem-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 24px rgba(26, 87, 153, 0.15);
-}
-
-.problem-icon {
-  font-size: 2.5rem;
-  display: block;
-  line-height: 1;
-  flex-shrink: 0;
-  min-width: 2.5rem;
-  text-align: center;
-}
-
-.problem-text {
-  flex: 1;
-}
-
-.problem-item p {
-  margin: 0;
-  line-height: 1.7;
-  font-size: 0.95rem;
-}
-
-/* Solution slide */
-.solution-card {
-  background: white;
-  padding: 1.8rem;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(10, 126, 108, 0.08);
-  border-left: 6px solid #0a7e6c;
-  transition: all 400ms ease;
-}
-
-.solution-card h3 {
-  color: #0a7e6c;
-  margin: 0 0 0.8rem 0;
-  font-size: 1.2rem;
-}
-
-.solution-card > p:not(.solution-footer) {
-  margin: 0 0 1rem 0;
-  font-size: 0.95rem;
-}
-
-.solution-list {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0;
-}
-
-.solution-list li {
-  margin: 0.6rem 0;
-  padding-left: 2rem;
-  position: relative;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.solution-list li:before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: #0a7e6c;
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.solution-footer {
-  margin-top: 1.2rem;
-  padding-top: 1rem;
-  border-top: 1px solid #e9ecef;
-  font-style: italic;
-  opacity: 0.8;
-  color: #666;
-  font-size: 0.9rem;
-}
-
-/* Houses grid */
-.houses-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 1.2rem;
-}
-
-.house-card {
-  background: white;
-  padding: 1.2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  font-size: 0.9rem;
-  text-align: center;
-  border-top: 4px solid #1a5799;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  min-height: 100px;
-  transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-  cursor: pointer;
-}
-
-.house-card:nth-child(2) { border-top-color: #0a7e6c; }
-.house-card:nth-child(3) { border-top-color: #334155; }
-.house-card:nth-child(4) { border-top-color: #1a5799; }
-.house-card:nth-child(5) { border-top-color: #0a7e6c; }
-.house-card:nth-child(6) { border-top-color: #334155; }
-.house-card:nth-child(7) { border-top-color: #1a5799; }
-
-.house-card:hover {
-  transform: scale(1.08) translateY(-6px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-}
-
-.house-emoji {
-  font-size: 2.2rem;
-  display: block;
-  line-height: 1;
-}
-
-/* Actors grid */
-.actors-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-
-.actor-card {
-  background: white;
-  padding: 1.4rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  border-left: 5px solid;
-  transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.actor-card.candidate { border-left-color: #1a5799; }
-.actor-card.leader { border-left-color: #0a7e6c; }
-.actor-card.admin { border-left-color: #334155; }
-
-.actor-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-}
-
-.actor-icon {
-  font-size: 2.2rem;
-  margin-bottom: 0.6rem;
-  display: block;
-  line-height: 1;
-}
-
-.actor-card h4 {
-  margin: 0 0 0.4rem 0;
-  color: #1a1a1a;
-  font-size: 1rem;
-}
-
-.role-id {
-  background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.75rem;
-  margin: 0 0 0.8rem 0;
-  border: 1px solid #e0e0e0;
-}
-
-.actor-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.7;
-}
-
-.actor-card li {
-  transition: all 200ms ease;
-}
-
-.actor-card li:before {
-  content: "→ ";
-  color: inherit;
-  margin-right: 0.3rem;
-  opacity: 0.6;
-  transition: all 200ms ease;
-}
-
-.actor-card:hover li:before {
-  opacity: 1;
-}
-
-/* Swipe demo */
-.swipe-demo {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  margin-top: 2.5rem;
-  align-items: center;
-}
-
-.swipe-card {
-  background: white;
-  border-radius: 18px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  max-width: 520px;
-  overflow: hidden;
-  transition: all 400ms ease;
-}
-
-.swipe-card:hover {
-  transform: scale(1.04);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
-}
-
-.card-header {
-  background: linear-gradient(135deg, #1a5799 0%, #0a7e6c 100%);
-  color: white;
-  padding: 2rem;
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-.card-stripe {
-  width: 5px;
-  height: 60px;
-  background: white;
-  border-radius: 3px;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-
-.card-header h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.4rem;
-  font-weight: 700;
-}
-
-.card-meta {
-  margin: 0;
-  opacity: 0.95;
-  font-size: 0.95rem;
-  font-weight: 300;
-}
-
-.card-body {
-  padding: 2rem;
-  line-height: 1.7;
-  font-size: 1rem;
-}
-
-.card-body p {
-  margin: 0 0 1rem 0;
-  color: #444;
-}
-
-.card-body p:last-child {
-  margin-bottom: 0;
-}
-
-.swipe-controls {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  transition: all 400ms ease;
-}
-
-.control-buttons {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-}
-
-.control-button {
-  font-weight: 600;
-  color: white;
-  font-size: 1.1rem;
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
-  transition: all 300ms ease;
-  cursor: pointer;
-}
-
-.control-button.left {
-  background: linear-gradient(135deg, #1a5799 0%, #1a3a6b 100%);
-}
-
-.control-button.right {
-  background: linear-gradient(135deg, #0a7e6c 0%, #066b54 100%);
-}
-
-.control-button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.intensity-slider {
-  background: white;
-  padding: 1rem 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.intensity-slider span {
-  font-size: 0.9rem;
-  color: #666;
-  font-weight: 500;
-}
-
-.slider-bar {
-  height: 6px;
-  background: linear-gradient(90deg, #1a5799 0%, #0a7e6c 100%);
-  border-radius: 3px;
-  position: relative;
-}
-
-.slider-bar:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  background: white;
-  border: 3px solid #0a7e6c;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Match and bond section */
-.match-section {
-  background: white;
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-}
-
-.match-section h3 {
-  color: #1a5799;
-  margin: 0 0 1.2rem 0;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.match-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 2rem 0;
-}
-
-.match-section li {
-  margin: 0.8rem 0;
-  padding-left: 2rem;
-  position: relative;
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-
-.match-section li:before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: #0a7e6c;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.bond-examples {
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.2rem;
-}
-
-.bond-row {
-  background: linear-gradient(135deg, #f8f9fa 0%, #f0f1f3 100%);
-  padding: 1.4rem;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  border-left: 4px solid #0a7e6c;
-  transition: all 300ms ease;
-}
-
-.bond-row:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(10, 126, 108, 0.1);
-}
-
-.bond-label {
-  font-size: 0.85rem;
-  color: #777;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.bond-value {
-  font-weight: 700;
-  color: #1a5799;
-  font-size: 1.05rem;
-}
-
-/* Admin panel */
-.admin-panel-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.panel-section {
-  background: white;
-  padding: 2rem;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-  border-top: 4px solid #1a5799;
-}
-
-.panel-section:nth-child(2) {
-  border-top-color: #0a7e6c;
-}
-
-.panel-section:nth-child(3) {
-  border-top-color: #334155;
-}
-
-.panel-section:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
-.panel-section h4 {
-  color: #1a5799;
-  margin: 0 0 1.3rem 0;
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-.panel-section:nth-child(2) h4 {
-  color: #0a7e6c;
-}
-
-.panel-section:nth-child(3) h4 {
-  color: #334155;
-}
-
-.panel-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 2;
-}
-
-.panel-section li {
-  transition: all 200ms ease;
-  padding-left: 0.5rem;
-}
-
-.panel-section li:before {
-  content: "◆ ";
-  color: #0a7e6c;
-  margin-right: 0.5rem;
-  font-size: 0.8rem;
-}
-
-.panel-section:hover li {
-  padding-left: 1rem;
-}
-
-/* Tech grid */
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.8rem;
-  margin-top: 2rem;
-}
-
-.tech-item {
-  background: white;
-  padding: 2rem;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.tech-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
-.tech-label {
-  display: block;
-  font-weight: 700;
-  color: #334155;
-  margin-bottom: 1.2rem;
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.tech-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-}
-
-.badge {
-  background: linear-gradient(135deg, #1a5799 0%, #0a7e6c 100%);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  transition: all 300ms ease;
-  display: inline-block;
-}
-
-.badge:hover {
-  transform: scale(1.08);
-  box-shadow: 0 4px 12px rgba(26, 87, 153, 0.3);
-}
-
-/* Roadmap section */
-.roadmap-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-
-.roadmap-column {
-  background: white;
-  padding: 1.6rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  border-left: 5px solid;
-  transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.roadmap-column:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-}
-
-.roadmap-column.v1 { border-left-color: #0a7e6c; }
-.roadmap-column.v1 h3 { color: #0a7e6c; }
-
-.roadmap-column.future { border-left-color: #ff6600; }
-.roadmap-column.future h3 { color: #ff6600; }
-
-.roadmap-column h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1.05rem;
-  font-weight: 700;
-}
-
-.roadmap-column ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.8;
-}
-
-.roadmap-column li {
-  transition: all 200ms ease;
-  padding-left: 0.3rem;
-}
-
-.roadmap-column li:before {
-  content: "✓ ";
-  color: inherit;
-  margin-right: 0.3rem;
-  opacity: 0.7;
-  font-weight: bold;
-}
-
-.roadmap-column.future li:before { content: "→ "; }
-
-.roadmap-column:hover li {
-  padding-left: 0.6rem;
-}
-
-/* Closing slide */
-.closing-slide {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100%;
-  gap: 2.5rem;
-  padding: 4rem 2rem;
-}
-
-.closing-slide h2 {
-  font-size: 2.2rem;
-  color: #1a5799;
-  margin: 0;
-  line-height: 1.5;
-  max-width: 900px;
-  font-weight: 800;
-}
-
-.closing-subtitle {
-  font-size: 1.2rem;
-  color: #666;
-  margin: 0;
-  max-width: 800px;
-  line-height: 1.8;
-  font-weight: 500;
-}
-
-.closing-footer {
-  margin-top: 2rem;
-  font-size: 1rem;
-  color: #999;
-  border-top: 2px solid #ddd;
-  padding-top: 2rem;
-  font-weight: 500;
-}
-</style>
