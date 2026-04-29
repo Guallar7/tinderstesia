@@ -14,6 +14,7 @@ docs/
 .nuxt/
 .vercel/
 .output/
+.codex-slide-check/
 
 # Logs
 logs
@@ -41,6 +42,7 @@ desktop.ini
 *.sln
 *.sw?
 .claude/
+.agents/
 
 # Environment variables
 .env

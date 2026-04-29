@@ -14,641 +14,11 @@ transition: fade
 clicksPerSlide: 999
 ---
 
-<style>
-/* Global styles with smooth transitions */
-.slidev-layout {
-  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-  font-family: 'IBM Plex Sans', sans-serif;
-  color: #1e293b;
-  transition: all 500ms ease-out;
-  padding: 1.5rem 2.5rem !important;
-}
-
-.slidev-layout h1 {
-  font-size: 1.8rem !important;
-  margin-bottom: 0.8rem !important;
-}
-
-/* Horizontal Video Layout */
-.horizontal-video-container {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 2rem;
-  align-items: center;
-  height: 80%;
-}
-
-/* Slide 1 Redesign: Premium Glassmorphism */
-.title-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  padding: 0;
-  background: radial-gradient(circle at top right, rgba(26, 87, 153, 0.05), transparent),
-              radial-gradient(circle at bottom left, rgba(10, 126, 108, 0.05), transparent);
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.title-glass-card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 3rem;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  max-width: 800px;
-  width: 90%;
-  margin: 0 auto;
-  animation: fadeInDown 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.title-icon {
-  width: 120px !important;
-  height: 120px !important;
-  margin: 0 auto 1.5rem auto !important;
-  display: block;
-  filter: drop-shadow(0 10px 20px rgba(26, 87, 153, 0.2));
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.title-text {
-  font-size: 3.8rem !important;
-  font-weight: 800 !important;
-  background: linear-gradient(135deg, #1a5799 0%, #0a7e6c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 0.5rem !important;
-  letter-spacing: -1px;
-}
-
-.title-subtitle {
-  font-size: 1.3rem;
-  color: #475569;
-  margin-bottom: 2rem;
-  font-weight: 500;
-  line-height: 1.3;
-}
-
-.title-info {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  padding-top: 1.5rem;
-  color: #64748b;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.tagline {
-  color: #1a5799;
-  font-weight: 700;
-  margin-top: 0.8rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-}
-
-/* Typography Helpers */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-}
-
-/* v-click animations */
-.slidev-vclick-target {
-  transition: all 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.slidev-vclick-hidden {
-  opacity: 0;
-  transform: translateY(15px);
-}
-
-/* Problem slide: 2x2 Grid Fix */
-.problem-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.2rem;
-  margin-top: 1.5rem;
-}
-
-.problem-item {
-  background: white;
-  padding: 1.2rem;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(26, 87, 153, 0.05);
-  display: flex;
-  gap: 1.2rem;
-  align-items: flex-start;
-  border-left: 5px solid #1a5799;
-  transition: all 300ms ease;
-}
-
-.problem-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(26, 87, 153, 0.12);
-}
-
-.problem-icon {
-  font-size: 2.2rem;
-  flex-shrink: 0;
-}
-
-.problem-text p {
-  margin: 0;
-  line-height: 1.6;
-  font-size: 0.95rem;
-}
-
-/* Solution slide: Tightening Spacing */
-.solution-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(10, 126, 108, 0.06);
-  border-left: 6px solid #0a7e6c;
-  max-width: 95%;
-  margin: 0 auto;
-}
-
-.solution-card h3 {
-  color: #0a7e6c;
-  margin: 0 0 1rem 0;
-  font-size: 1.4rem;
-}
-
-.solution-list {
-  list-style: none;
-  padding: 0;
-  margin: 1.2rem 0;
-}
-
-.solution-list li {
-  margin: 0.8rem 0;
-  padding-left: 2rem;
-  position: relative;
-  font-size: 1.05rem;
-  line-height: 1.5;
-}
-
-.solution-list li:before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: #0a7e6c;
-  font-weight: 900;
-}
-
-.solution-footer {
-  margin-top: 1.5rem;
-  padding-top: 1.2rem;
-  border-top: 1px solid #f1f5f9;
-  font-style: italic;
-  color: #64748b;
-  font-size: 0.95rem;
-}
-
-/* Houses grid */
-.houses-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.house-card {
-  background: white;
-  padding: 1.2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-  text-align: center;
-  border-top: 4px solid #1a5799;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-  transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.house-card:nth-child(even) { border-top-color: #0a7e6c; }
-
-.house-card:hover {
-  transform: scale(1.05) translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-}
-
-.house-emoji {
-  font-size: 2.5rem;
-}
-
-/* Actors grid: Overflow Fix */
-.actors-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.2rem;
-  margin-top: 1rem;
-}
-
-.actor-card {
-  background: white;
-  padding: 1.2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  border-top: 5px solid;
-  transition: all 300ms ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.actor-card.candidate { border-top-color: #1a5799; }
-.actor-card.leader { border-top-color: #0a7e6c; }
-.actor-card.admin { border-top-color: #334155; }
-
-.actor-icon {
-  font-size: 2.5rem;
-  margin-bottom: 0.8rem;
-}
-
-.actor-card h4 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.1rem;
-}
-
-.role-id {
-  background: #f8fafc;
-  padding: 0.3rem 0.6rem;
-  border-radius: 6px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.7rem;
-  margin-bottom: 1rem;
-  border: 1px solid #e2e8f0;
-  display: inline-block;
-  align-self: flex-start;
-}
-
-.actor-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.6;
-}
-
-.actor-card li:before {
-  content: "→ ";
-  color: #1a5799;
-  margin-right: 0.4rem;
-  font-weight: bold;
-}
-
-/* Swipe demo */
-.swipe-demo {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-top: 1.5rem;
-  align-items: center;
-}
-
-.swipe-card {
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
-  width: 100%;
-  max-width: 480px;
-  overflow: hidden;
-}
-
-.card-header {
-  background: linear-gradient(135deg, #1a5799 0%, #0a7e6c 100%);
-  color: white;
-  padding: 1.5rem 2rem;
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-.card-stripe {
-  width: 4px;
-  height: 50px;
-  background: white;
-  border-radius: 2px;
-}
-
-.card-body {
-  padding: 1.5rem 2rem;
-  font-size: 1.05rem;
-}
-
-.swipe-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  width: 100%;
-  max-width: 400px;
-}
-
-.control-buttons {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-.control-button {
-  padding: 0.7rem 1.5rem;
-  border-radius: 12px;
-  font-weight: 700;
-  color: white;
-}
-
-.control-button.left { background: #1a5799; }
-.control-button.right { background: #0a7e6c; }
-
-.intensity-slider {
-  background: #f8fafc;
-  padding: 0.8rem 1.2rem;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.slider-bar {
-  height: 8px;
-  background: linear-gradient(90deg, #1a5799 0%, #0a7e6c 100%);
-  border-radius: 4px;
-  position: relative;
-}
-
-.slider-bar:after {
-  content: '';
-  position: absolute;
-  right: 15%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  background: white;
-  border: 4px solid #0a7e6c;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-/* Roadmap section: Size Optimization */
-.roadmap-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.roadmap-column {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  border-left: 6px solid;
-}
-
-.roadmap-column.v1 { border-left-color: #0a7e6c; }
-.roadmap-column.future { border-left-color: #f59e0b; }
-
-.roadmap-column h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1.2rem;
-}
-
-.roadmap-column ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.8;
-}
-
-.roadmap-column li:before {
-  content: "• ";
-  color: inherit;
-  font-weight: bold;
-}
-
-/* Closing slide */
-.closing-slide {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  gap: 2rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-/* Disclaimer / What it doesn't do */
-.disclaimer-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.disclaimer-item {
-  background: #fef2f2;
-  border-left: 4px solid #ef4444;
-  padding: 1rem;
-  border-radius: 8px;
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
-  font-size: 0.9rem;
-  color: #991b1b;
-}
-
-/* Screenshot styling */
-.screenshot-card {
-  background: white;
-  padding: 0.3rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  border: 1px solid #e2e8f0;
-  max-width: 100%;
-  margin: 0.5rem auto;
-}
-
-.screenshot-img {
-  width: 100%;
-  border-radius: 8px;
-  display: block;
-  object-fit: contain;
-}
-
-/* Usage Proposal */
-.usage-list {
-  counter-reset: usage-counter;
-  list-style: none;
-  padding: 0;
-  margin-top: 1.5rem;
-}
-
-.usage-list li {
-  counter-increment: usage-counter;
-  background: white;
-  margin-bottom: 1rem;
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-}
-
-.usage-list li::before {
-  content: counter(usage-counter);
-  background: #0a7e6c;
-  color: white;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  flex-shrink: 0;
-}
-
-/* Quote Slide: High Impact */
-.quote-slide {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 4rem;
-  background: radial-gradient(circle at center, rgba(26, 87, 153, 0.03), transparent);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.quote-slide h2 {
-  font-size: 2.8rem;
-  line-height: 1.4;
-  font-weight: 700;
-  color: #1e293b;
-  max-width: 900px;
-}
-
-.quote-highlight {
-  color: #1a5799;
-  font-weight: 800;
-}
-
-/* Onboarding Steps */
-.onboarding-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.step-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-  text-align: center;
-  position: relative;
-  border: 1px solid #f1f5f9;
-}
-
-.step-number {
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #1a5799;
-  color: white;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 0.9rem;
-}
-
-.step-card h4 { margin: 1rem 0 0.5rem 0; }
-.step-card p { font-size: 0.85rem; color: #64748b; margin: 0; }
-
-/* Enhanced Link and Logo styles */
-.app-link {
-  display: inline-block;
-  padding: 0.4rem 1rem;
-  background: linear-gradient(135deg, rgba(26, 87, 153, 0.1) 0%, rgba(10, 126, 108, 0.1) 100%);
-  border: 1px solid rgba(26, 87, 153, 0.2);
-  border-radius: 100px;
-  color: #1a5799 !important;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 300ms ease;
-  margin-top: 0.5rem;
-}
-
-.app-link:hover {
-  background: linear-gradient(135deg, rgba(26, 87, 153, 0.2) 0%, rgba(10, 126, 108, 0.2) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(26, 87, 153, 0.1);
-}
-
-.closing-logo {
-  width: 120px;
-  height: 120px;
-  margin-bottom: 0.5rem;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-  animation: subtle-float 4s ease-in-out infinite;
-}
-
-@keyframes subtle-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-.closing-title {
-  font-size: 3.5rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, #1a5799 0%, #0a7e6c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 1.5rem;
-  letter-spacing: -1px;
-}
-</style>
-
 <div class="title-container">
   <div class="title-glass-card">
     <img src="/icon.png" class="title-icon" alt="Tinderstesia Logo">
     <h1 class="title-text">Tinderstesia</h1>
-    <p class="title-subtitle">Propuesta para el Servicio de Anestesia</p>
+    <p class="title-subtitle">Una forma menos dolorosa de repartir casas</p>
     <div class="title-info">
       <p>Hospital Universitario Miguel Servet</p>
       <p style="margin-top: 1rem;">
@@ -656,30 +26,42 @@ h1, h2, h3, h4, h5, h6 {
           🚀 Acceder a tinderstesia.vercel.app
         </a>
       </p>
-      <p class="tagline">Afinidades reales, decisiones informadas</p>
+      <p class="tagline">Afinidades reales, decisiones humanas mejor informadas</p>
     </div>
   </div>
 </div>
+
+<!--
+Abrir con calma: "Esto empezó como una broma porque se parece a Tinder, pero el problema que intenta ordenar es real". La idea no es vender tecnología: es reducir memoria, pasillos y ruido antes de decidir.
+-->
 
 ---
 
 <div class="quote-slide">
   <h2 v-click>
-    "Tinderstesia convierte <span class="quote-highlight">preferencias dispersas</span> en una visión clara de <span class="quote-highlight">afinidades reales</span> entre profesionales y unidades."
+    "Tinderstesia convierte <span class="quote-highlight">preferencias dispersas</span> en una foto clara de <span class="quote-highlight">afinidades reales</span> entre profesionales y casas."
   </h2>
 </div>
+
+<!--
+Mensaje de esta diapositiva: foto clara. La aplicación no decide por la jefatura; pone las preferencias en un formato comparable.
+-->
 
 ---
 
 # Tinderstesia en vivo
 
 <div class="screenshot-card" v-click>
-  <img src="/tinderstesia_landing.png" class="screenshot-img" alt="Landing Page" style="max-height: 500px; width: 100%; object-fit: contain; border-radius: 12px;">
+  <img src="/tinderstesia_landing.png" class="screenshot-img landing-screenshot" alt="Landing Page" style="width: 100%; object-fit: contain; border-radius: 12px;">
 </div>
 
 <p style="text-align: center; color: #64748b; font-size: 0.9rem;" v-click>
   Interfaz moderna y adaptada para escritorio y dispositivos móviles.
 </p>
+
+<!--
+Aquí conviene enseñar que no es una idea abstracta: existe, se puede abrir y se entiende visualmente. Si falla internet, esta captura sostiene la explicación.
+-->
 
 ---
 
@@ -712,6 +94,10 @@ h1, h2, h3, h4, h5, h6 {
   </div>
 </div>
 
+<!--
+Buscar asentimiento. Este es el dolor cotidiano: información suelta, impresiones parciales y decisiones con demasiada carga mental.
+-->
+
 ---
 
 # ¿Para qué sirve?
@@ -728,7 +114,12 @@ h1, h2, h3, h4, h5, h6 {
   </ul>
 
   <p class="solution-footer" v-click>No sustituye el criterio de la administración. <b>Lo complementa con datos claros.</b></p>
+  <p class="solution-footer" v-click style="margin-top: 0.8rem;">La app no manda: ordena la mesa antes de la reunión.</p>
 </div>
+
+<!--
+Frase clave para bajar defensas: "No manda". Es apoyo a la decisión, no piloto automático.
+-->
 
 ---
 
@@ -765,6 +156,10 @@ h1, h2, h3, h4, h5, h6 {
   Un proceso rápido, visual y guiado para todos los profesionales.
 </p>
 
+<!--
+Presentarlo como un piloto de baja fricción. Lo importante es que todos contestan a las mismas preguntas y dejan una señal comparable.
+-->
+
 ---
 
 # Las 7 Casas Incluidas
@@ -799,6 +194,10 @@ h1, h2, h3, h4, h5, h6 {
     <span>Dolor</span>
   </div>
 </div>
+
+<!--
+Nombrar las casas reales ayuda a que deje de sonar genérico. Es una herramienta pensada para este servicio, no una plantilla externa.
+-->
 
 ---
 
@@ -845,6 +244,10 @@ h1, h2, h3, h4, h5, h6 {
   </div>
 </div>
 
+<!--
+Separar bien los permisos: el profesional ve lo suyo, el responsable ve su casa, la administración ve el mapa. Esto protege privacidad y mantiene la visión global donde toca.
+-->
+
 ---
 
 # Vista del Responsable
@@ -870,6 +273,10 @@ h1, h2, h3, h4, h5, h6 {
   </div>
 </div>
 
+<!--
+En esta demo, remarcar que el responsable no está "puntuando personas" de forma aislada: expresa el interés de su casa para una posible incorporación.
+-->
+
 ---
 
 # El Juego: Valoración Bidireccional
@@ -894,6 +301,10 @@ h1, h2, h3, h4, h5, h6 {
     ></video>
   </div>
 </div>
+
+<!--
+Este es el momento de la broma de Tinder. Después aterrizarla: misma mecánica sencilla, pero aplicada a preferencias laborales internas.
+-->
 
 ---
 
@@ -926,6 +337,10 @@ h1, h2, h3, h4, h5, h6 {
   </div>
 </div>
 
+<!--
+Explicar que no todos los "me interesa" pesan igual. La escala 0-10 separa un encaje clarísimo de un interés tibio o asimétrico.
+-->
+
 ---
 
 # ¿Qué aporta a la Dirección?
@@ -957,6 +372,14 @@ h1, h2, h3, h4, h5, h6 {
   </div>
 </div>
 
+<p style="margin-top: 1.5rem; text-align: center; font-style: italic; color: #475569;" v-click>
+  La decisión sigue siendo humana, pero llega con mejores datos sobre la mesa.
+</p>
+
+<!--
+Esta es la diapositiva para tu jefe: menos ruido, más orden, misma responsabilidad final.
+-->
+
 ---
 
 # Ejemplo Sencillo
@@ -976,6 +399,10 @@ h1, h2, h3, h4, h5, h6 {
     <div class="tagline" style="color: #f59e0b;">Información útil, no es prioridad</div>
   </div>
 </div>
+
+<!--
+Usar estos dos casos como conversación. Match fuerte no significa obligación; discrepancia no significa fracaso. Ambas cosas informan.
+-->
 
 ---
 
@@ -1000,6 +427,10 @@ h1, h2, h3, h4, h5, h6 {
   Es una herramienta de <b>apoyo</b> a la decisión humana.
 </p>
 
+<!--
+Decir esto antes de que lo pregunten. No recoloca automáticamente, no impone resultados y no toca datos de pacientes.
+-->
+
 ---
 
 # Propuesta de Uso
@@ -1011,6 +442,10 @@ h1, h2, h3, h4, h5, h6 {
   <li v-click>Revisión del panel global de afinidades</li>
   <li v-click>Uso de resultados como apoyo para decidir</li>
 </ul>
+
+<!--
+Proponerlo como prueba acotada. Si ayuda, se incorpora; si no ayuda, al menos habremos aprendido cómo están las preferencias reales.
+-->
 
 ---
 
@@ -1042,20 +477,28 @@ h1, h2, h3, h4, h5, h6 {
   </div>
 </div>
 
+<!--
+Si la audiencia no es técnica, pasar rápido por esta diapositiva. Sirve para transmitir que la V1 está hecha con una base seria y que el roadmap existe, no para entrar en arquitectura.
+-->
+
 ---
 
 <div class="closing-slide">
   <img src="/icon.png" class="closing-logo" alt="Tinderstesia Logo" v-click>
   <div class="closing-title" v-click>Tinderstesia</div>
-  <h2 v-click style="font-size: 1.8rem; color: #1e293b; margin-bottom: 1rem;">Decisiones más claras, procesos más humanos.</h2>
+  <h2 v-click style="font-size: 1.65rem; color: #1e293b;">Decisiones más claras, procesos más humanos.</h2>
   
-  <p class="closing-subtitle" v-click style="max-width: 800px; color: #475569; font-size: 1.2rem; line-height: 1.6; margin-bottom: 3rem;">
+  <p class="closing-subtitle" v-click style="max-width: 800px; color: #475569; font-size: 1.08rem; line-height: 1.45;">
     Escuchar a los profesionales e incorporar la visión de las casas para decidir con mejores datos.
   </p>
 
-  <div class="closing-footer" v-click style="border-top: 1px solid #e2e8f0; padding-top: 2rem; color: #64748b; font-size: 1rem;">
+  <div class="closing-footer" v-click style="border-top: 1px solid #e2e8f0; color: #64748b; font-size: 0.95rem;">
     Hospital Universitario Miguel Servet<br>
     <span style="font-weight: 700; color: #1a5799;">Desarrollado por David Guallar</span>
   </div>
 </div>
+
+<!--
+Cierre breve: "La gracia es el nombre; la utilidad es ordenar afinidades". Terminar recordando que la decisión sigue siendo nuestra.
+-->
 
